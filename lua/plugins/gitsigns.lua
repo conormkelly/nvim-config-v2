@@ -2,8 +2,9 @@ return {
     'lewis6991/gitsigns.nvim',
     event = { "BufReadPre", "BufNewFile" },
     config = function()
+        -- Enable inline blame
         require('gitsigns').setup({
-            current_line_blame = true, -- <-- THIS is the key bit!
+            current_line_blame = true,
         })
     end,
 }
