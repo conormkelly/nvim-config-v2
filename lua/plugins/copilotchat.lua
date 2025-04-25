@@ -5,7 +5,15 @@ return {
         { "nvim-lua/plenary.nvim" },
         { "folke/snacks.nvim" },
     },
-    build = "make tiktoken", -- Needed for macOS/Linux for token counting
+    build = "make tiktoken",
+    init = function()
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "CopilotChat",
+            callback = function()
+                vim.b.copilot_enabled = false
+            end,
+        })
+    end,
     opts = {
         selection = function(source)
             local select = require("CopilotChat.select")
@@ -31,7 +39,7 @@ return {
                     "Keep the title under 50 characters and wrap message at 72 characters. " ..
                     "Format as a gitcommit code block.",
                 context = "git:staged",
-                mapping = "<leader>gc", -- Git Commit shortcut
+                mapping = "<leader>gc",
                 description = "Generate conventional commit message",
             },
         },
@@ -46,3 +54,4 @@ return {
         "CopilotChatModels", "CopilotChatAgents"
     },
 }
+
