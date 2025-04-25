@@ -28,5 +28,15 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "120"
 
+-- Visibly show EOLs and empty lines at end of buffer
+vim.opt.list = true
+vim.opt.listchars:append({
+    -- eol = "↵", -- end-of-line character
+    trail = "·", -- trailing spaces
+    -- space = "⋅", -- optional: visualize all spaces
+})
+vim.opt.fillchars:append({
+    eob = "↴", -- end-of-buffer marker (after the last line)
+})

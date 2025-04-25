@@ -1,0 +1,24 @@
+# Tabs vs spaces
+indent_type = "Spaces"
+indent_width = 4
+
+# Column width before wrapping
+column_width = 80
+
+# Prefer "double" quotes (like JS, JSON, etc.)
+quote_style = "AutoPreferDouble"
+
+# Parentheses on function calls:
+# "None" = no parens unless required
+call_parentheses = "None"
+
+# Always end files with exactly one newline
+insert_final_newline = true
+
+# Force consistent field separators in tables
+align_array_table = false
+collapse_simple_statement = "Always"
+
+# Respect your existing .editorconfig or stylua_ignore
+respect_ignore_files = true
+
