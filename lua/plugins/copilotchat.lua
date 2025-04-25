@@ -25,11 +25,19 @@ return {
                 mapping = "<leader>cge",
                 description = "Explain Go code",
             },
+            GenerateCommit = {
+                prompt =
+                "Write commit message for the change with commitizen convention. Keep the title under 50 characters and wrap message at 72 characters. Format as a gitcommit code block.",
+                context = "git:staged",
+                mapping = "<leader>gc", -- Git Commit shortcut
+                description = "Generate conventional commit message",
+            },
         },
     },
     keys = {
-        { "<leader>cc",  "<cmd>CopilotChatToggle<cr>",    desc = "Toggle Copilot Chat" },
-        { "<leader>cge", "<cmd>CopilotChatExplainGo<cr>", desc = "Explain Go Code (Custom)" },
+        { "<leader>cc",  "<cmd>CopilotChatToggle<cr>",         desc = "Toggle Copilot Chat" },
+        { "<leader>cge", "<cmd>CopilotChatExplainGo<cr>",      desc = "Explain Go Code (Custom)" },
+        { "<leader>gc",  "<cmd>CopilotChatGenerateCommit<cr>", desc = "Generate Commit Message" },
     },
     cmd = {
         "CopilotChat", "CopilotChatToggle", "CopilotChatPrompts",
