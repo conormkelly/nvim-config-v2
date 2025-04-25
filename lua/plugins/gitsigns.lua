@@ -1,6 +1,9 @@
 return {
     'lewis6991/gitsigns.nvim',
     event = { "BufReadPre", "BufNewFile" },
-    config = true, -- use default config
+    config = function()
+        require('gitsigns').setup({
+            current_line_blame = true, -- <-- THIS is the key bit!
+        })
+    end,
 }
-
