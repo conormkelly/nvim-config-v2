@@ -48,10 +48,25 @@ return {
         { "<leader>cc",  "<cmd>CopilotChatToggle<cr>",         desc = "Toggle Copilot Chat" },
         { "<leader>cge", "<cmd>CopilotChatExplainGo<cr>",      desc = "Explain Go Code (Custom)" },
         { "<leader>gc",  "<cmd>CopilotChatGenerateCommit<cr>", desc = "Generate Commit Message" },
+        -- Add toggle for Copilot suggestions with fixed notification
+        {
+            "<leader>ct",
+            function()
+                -- Toggle global Copilot setting
+                vim.g.copilot_enabled = not vim.g.copilot_enabled
+
+                -- Show notification with current state
+                local state = vim.g.copilot_enabled and "enabled" or "disabled"
+                local message = "Copilot suggestions " .. state
+
+                -- Always use vim.notify which is guaranteed to be available
+                vim.notify(message, vim.log.levels.INFO)
+            end,
+            desc = "Toggle Copilot suggestions"
+        },
     },
     cmd = {
         "CopilotChat", "CopilotChatToggle", "CopilotChatPrompts",
         "CopilotChatModels", "CopilotChatAgents"
     },
 }
-
