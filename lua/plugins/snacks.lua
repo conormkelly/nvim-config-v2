@@ -98,8 +98,10 @@ return {
         { "<leader>gB",      function() Snacks.gitbrowse() end,                                      desc = "Git Browse",               mode = { "n", "v" } },
         { "<leader>gg",      function() Snacks.lazygit() end,                                        desc = "Lazygit" },
         { "<leader>un",      function() Snacks.notifier.hide() end,                                  desc = "Dismiss All Notifications" },
-        { "<c-/>",           function() Snacks.terminal() end,                                       desc = "Toggle Terminal" },
-        { "<c-_>",           function() Snacks.terminal() end,                                       desc = "which_key_ignore" },
+        -- Mapped in terminal mode too, so the same key hides the terminal from inside it.
+        -- Most terminals send <c-/> as <c-_>, which zsh would otherwise treat as undo.
+        { "<c-/>",           function() Snacks.terminal() end,                                       desc = "Toggle Terminal",          mode = { "n", "t" } },
+        { "<c-_>",           function() Snacks.terminal() end,                                       desc = "which_key_ignore",         mode = { "n", "t" } },
         { "]]",              function() Snacks.words.jump(vim.v.count1) end,                         desc = "Next Reference",           mode = { "n", "t" } },
         { "[[",              function() Snacks.words.jump(-vim.v.count1) end,                        desc = "Prev Reference",           mode = { "n", "t" } },
         {
