@@ -6,7 +6,10 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     config = function()
-        require("nvim-tree").setup {}
+        require("nvim-tree").setup {
+            -- Reveal and highlight the current buffer's file in the tree as buffers change
+            update_focused_file = { enable = true },
+        }
 
         -- Smart toggle/focus keymap
         vim.keymap.set("n", "<leader>pv", function()
