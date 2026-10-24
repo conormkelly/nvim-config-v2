@@ -46,7 +46,12 @@ return {
         { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
         { "<leader>fp",      function() Snacks.picker.projects() end,                                desc = "Projects" },
         { "<leader>fr",      function() Snacks.picker.recent() end,                                  desc = "Recent" },
+        { "<leader>ff",      function() Snacks.picker.files() end,                                   desc = "Find Files" },
+        { "<leader>fg",      function() Snacks.picker.grep() end,                                    desc = "Grep" },
+        { "<leader>fb",      function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
+        { "<leader>fh",      function() Snacks.picker.help() end,                                    desc = "Help Pages" },
         -- git
+        { "<leader>gf",      function() Snacks.picker.git_files() end,                               desc = "Git Files" },
         { "<leader>gb",      function() Snacks.picker.git_branches() end,                            desc = "Git Branches" },
         { "<leader>gl",      function() Snacks.picker.git_log() end,                                 desc = "Git Log" },
         { "<leader>gL",      function() Snacks.picker.git_log_line() end,                            desc = "Git Log Line" },
