@@ -23,6 +23,8 @@ return {
 				"lua",
 				"markdown",
 				"python",
+				"rust",
+				"toml",
 				"vim",
 				"yaml",
 			},
