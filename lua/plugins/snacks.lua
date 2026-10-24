@@ -27,6 +27,17 @@ return {
             enabled = true
         },
         quickfile = { enabled = true },
+        terminal = {
+            win = {
+                keys = {
+                    -- Programs without mouse tracking (e.g. Claude Code) leave a click or scroll to
+                    -- Neovim, which drops to normal mode without re-entering the buffer, so
+                    -- auto_insert never fires. Clicking resumes typing; scrolling stays in normal
+                    -- mode for reading scrollback.
+                    term_click = { "<LeftRelease>", function() vim.cmd.startinsert() end, mode = "n", desc = "Resume terminal input" },
+                },
+            },
+        },
         scope = { enabled = true },
         scroll = { enabled = true },
         statuscolumn = { enabled = true },
