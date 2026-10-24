@@ -44,6 +44,15 @@ vim.keymap.set("n", "=ap", "ma=ap'a")
 -- Partial search hint
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+-- Save with Ctrl-S; insert mode stays in insert mode. Terminal mode is left alone so
+-- shells and TUIs still receive it.
+vim.keymap.set({ "n", "i", "x" }, "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
+
+-- LSP signature help on Ctrl-K, since Ctrl-S (Neovim's default) saves
+vim.keymap.set({ "i", "s" }, "<C-k>", function()
+    vim.lsp.buf.signature_help()
+end, { desc = "Signature help" })
+
 -- Toggle relative line numbers
 vim.keymap.set("n", "<leader>rn", function()
     vim.opt.relativenumber = not vim.opt.relativenumber:get()
