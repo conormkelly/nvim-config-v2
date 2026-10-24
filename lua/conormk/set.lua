@@ -22,7 +22,7 @@ vim.opt.wrap = false
 -- Swap, backup and undo settings
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME" .. "/.vim/undodir")
+-- Persistent undo uses Neovim's default undodir (stdpath("state")/undo)
 vim.opt.undofile = true
 
 -- Search behavior

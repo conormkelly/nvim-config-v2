@@ -4,9 +4,10 @@ return {
 	build = ":TSUpdate",
 	-- lazy-load when a buffer is read or created
 	event = { "BufReadPost", "BufNewFile" },
-	-- and optionally set up a dependency for playground
 	dependencies = {
 		"nvim-treesitter/playground", -- interactive query inspector
+		-- branch must match nvim-treesitter's (master uses the nvim-treesitter.configs API below)
+		{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "master" },
 	},
 	config = function()
 		require("nvim-treesitter.configs").setup({
@@ -22,7 +23,6 @@ return {
 				"lua",
 				"markdown",
 				"python",
-				"typescript",
 				"vim",
 				"yaml",
 			},
@@ -64,13 +64,12 @@ return {
 				move = {
 					enable = true,
 					set_jumps = true, -- add to jumplist
+					-- ]] / [[ are left to Snacks.words (next/prev reference)
 					goto_next_start = {
 						["]m"] = "@function.outer",
-						["]]"] = "@class.outer",
 					},
 					goto_previous_start = {
 						["[m"] = "@function.outer",
-						["[["] = "@class.outer",
 					},
 				},
 			},
