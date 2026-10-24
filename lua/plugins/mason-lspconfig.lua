@@ -1,9 +1,32 @@
 return {
     "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
+    dependencies = {
+        "williamboman/mason.nvim",
+        "neovim/nvim-lspconfig", -- provides the default server configs (lsp/<name>.lua)
+        "hrsh7th/cmp-nvim-lsp",
+    },
     config = function()
-        -- Install and manage LSP servers
-        require("mason-lspconfig").setup {
+        -- Advertise nvim-cmp completion capabilities to every server
+        vim.lsp.config("*", {
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        })
+
+        vim.lsp.config("lua_ls", {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { "vim" }, -- tell LSP that 'vim' is a known global
+                    },
+                    workspace = {
+                        library = vim.api.nvim_get_runtime_file("", true),
+                        checkThirdParty = false, -- prevent annoying prompts
+                    },
+                },
+            },
+        })
+
+        -- Install these servers; every installed server is enabled via vim.lsp.enable()
+        require("mason-lspconfig").setup({
             ensure_installed = {
                 "clangd",   -- C/C++
                 "gopls",    -- Go
@@ -13,16 +36,6 @@ return {
                 "html",     -- HTML
                 "sqls",     -- SQL
             },
-            automatic_installation = true,
-        }
-
-        -- Hook each installed server into lspconfig
-        require("mason-lspconfig").setup_handlers {
-            -- default handler for all servers
-            function(server_name)
-                require("lspconfig")[server_name].setup {}
-            end,
-        }
+        })
     end,
 }
-
